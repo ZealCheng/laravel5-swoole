@@ -41,6 +41,25 @@
             line-height: 25px;
         }
 
+        .online {
+            width: 120px;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .online p {
+            margin: 0;
+        }
+
+        .online span {
+            font-size: 30px;
+            color: red;
+            font-weight: bold;
+        }
+
         .messages-box {
             position: fixed;
             right: 0;
@@ -72,25 +91,39 @@
 </head>
 <body>
 <div class="page">
+    <div class="online">
+        <p>在线人数<span id="count"></span>人</p>
+    </div>
     <ul class="mine" id="mine">
     </ul>
     <div class="messages-box">
         <input class="messages-box-content" id="content">
-        <button onclick="ws.send( document.getElementById('content').value )" class="messages-box-send">发送</button>
+        <button type="submit"
+                onclick="websocket.send( document.getElementById('content').value )"
+                class="messages-box-send">发送
+        </button>
     </div>
 </div>
 
 <script type="text/javascript">
-    var mine     = document.getElementById('mine');
-    var ws       = new WebSocket("ws://127.0.0.1:9501");
-    ws.onopen    = function (event) {
-        mine.insertAdjacentHTML('beforeend', '<li>恭喜，连接成功！</li>')
+    var mine            = document.getElementById('mine');
+    var websocket       = new WebSocket("ws://127.0.0.1:9501");
+    websocket.onopen    = function (event) {
+        console.info('恭喜，连接成功！');
     };
-    ws.onmessage = function (event) {
-        mine.insertAdjacentHTML('beforeend', '<li>' + event.data + '</li>')
+    websocket.onmessage = function (event) {
+        document.getElementById('count').innerText = JSON.parse(event.data).count;
+        mine.insertAdjacentHTML('beforeend', '<li>' + JSON.parse(event.data).message + '</li>')
     };
 
+    websocket.onclose = function (event) {
+        document.getElementById('count').innerText = event.data;
+        console.info('对不起，服务连接关闭！');
+    };
 
+    websocket.onerror = function (event, e) {
+        console.error("服务连接出问题了：" + event.data);
+    };
 </script>
 </body>
 </html>
