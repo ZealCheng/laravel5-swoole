@@ -1,27 +1,33 @@
-# Laravel PHP Framework
+# Laravel5.3 + Swoole1.8.11 + Redis + Supervisor
+    Laravel   : 系统业务处理以及页面渲染
+    Swoole    : 提供WebSocket服务
+    Redis     : 基于发布订阅模式，实现数据通信
+    Supervisor: Swoole进程管理或使用nginx反向代理模式
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### 安装方式
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+git clone 本仓库
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+composer install
 
-## Official Documentation
+npm install
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-## Contributing
+### 访问方式
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+配置.env文件
 
-## Security Vulnerabilities
+CLI： php /项目/swoole/websocket.php
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+打开项目即可
 
-## License
+### 截图
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+![截图](/demo.png)
+
+
+
+### License
+
+[MIT License](https://opensource.org/licenses/mit-license.html). ©  [Running Lee](mailto:lihui870920@gmail.com)
+
