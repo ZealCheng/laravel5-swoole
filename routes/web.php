@@ -1,4 +1,5 @@
 <?php
+
 //use Illuminate\Support\Facades\Redis;
 
 /*
@@ -12,5 +13,9 @@
 |
 */
 Route::get('/', [
-    'uses' => '\App\Http\Controllers\HomeController@index'
+    'uses' => '\App\Http\Controllers\HomeController@index',
 ]);
+
+Route::get('/t', function () {
+    phpinfo();
+});
