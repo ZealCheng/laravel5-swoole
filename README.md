@@ -1,4 +1,4 @@
-# Laravel5.3 + Swoole1.8.11 + Redis + Supervisor
+# Laravel5.6 + Swoole2.1.2 + Redis + Supervisor
     Laravel   : 系统业务处理以及页面渲染
     Swoole    : 提供WebSocket服务
     Redis     : 基于发布订阅模式，实现数据通信
