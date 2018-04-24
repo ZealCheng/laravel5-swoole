@@ -5,6 +5,7 @@ $http = new swoole_http_server('127.0.0.1', 8090);
 $http->on('WorkerStart', function ($serv, $worker_id) {
     //在SWOOLE中启动Laravel框架
     require __DIR__.'/../../bootstrap/autoload.php';
+    require_once __DIR__.'/../../bootstrap/app.php';
 });
 
 $http->on('start', function ($server) {
