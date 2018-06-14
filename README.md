@@ -17,7 +17,8 @@ npm install
 
 配置.env文件
 
-CLI： php /项目/swoole/websocket.php
+在终端打开websocket服务器
+项目目录$ php swoole/websocket.php
 
 打开项目即可
 
