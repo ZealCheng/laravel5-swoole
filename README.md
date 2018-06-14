@@ -15,18 +15,13 @@ npm install
 
 ### 访问方式
 
-配置.env文件
+* 配置.env文件
 
-在终端打开websocket服务器
-项目目录$ php swoole/websocket.php
+* 在终端打开websocket服务器
 
-打开项目即可
+`项目目录$ php swoole/Websocket/websocket.php`
 
-### 截图
-
-![截图](/demo.png)
-
-> 如果一个promise对象处在fulfilled或rejected状态而不是pending状态，那么它也可以被称为settled状态。你可能也会听到一个术语resolved ，它表示promise对象处于settled状态，或者promise对象被锁定在了调用链中。关于promise的状态， Domenic Denicola 的 States and fates 有更多详情可供参考。
+* 打开项目即可
 
 ### License
 
