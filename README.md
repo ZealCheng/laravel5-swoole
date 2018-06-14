@@ -19,7 +19,7 @@ npm install
 
 * 在终端打开websocket服务器
 
-`项目目录$ php swoole/Websocket/websocket.php`
+`项目目录$ php swoole/WebSocket/websocket.php`
 
 * 打开项目即可
 
