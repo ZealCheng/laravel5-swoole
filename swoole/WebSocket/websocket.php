@@ -2,7 +2,7 @@
 
 $table = new swoole_table(1024);
 $table->column('fd', swoole_table::TYPE_INT);
-$table->column('from_id', swoole_table::TYPE_INT);
+$table->column('reactor_id', swoole_table::TYPE_INT);
 $table->create();
 
 $server        = new swoole_websocket_server('127.0.0.1', 9501);
@@ -15,7 +15,7 @@ $server->on('open', function (swoole_websocket_server $_server, $request) {
         // 获取客户端信息
         $info = $_server->getClientInfo($request->fd);
         // 存入客户端列表中
-        $_server->table->set($request->fd, ['fd' => $request->fd, 'from_id' => $info['from_id'], 'data' => null]);
+        $_server->table->set($request->fd, ['fd' => $request->fd, 'reactor_id' => $info['reactor_id'], 'data' => null]);
         if ($_server->table->count()) {
             //广播客户端新用户消息
             foreach ($_server->table as $client) {
@@ -24,6 +24,17 @@ $server->on('open', function (swoole_websocket_server $_server, $request) {
                     'count'   => $_server->table->count(),
                 ]));
             }
+            $params = 10;
+            //每隔2000ms触发一次
+            swoole_timer_tick(2000, function ($timer_id) use ($_server, $request, &$params) {
+                foreach ($_server->table as $client) {
+                    $_server->push($client['fd'], json_encode([
+                        'message' => "$params",
+                        'count'   => $_server->table->count(),
+                    ]));
+                }
+                if (!$params--) swoole_timer_clear($timer_id);
+            });
         }
         echo "当前活跃用户为：{$_server->table->count()}人\n";
     }
